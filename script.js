@@ -17,10 +17,14 @@ addBookToLibrary("book#2", "author#2", 210, "Haven't Read Yet");
 addBookToLibrary("book#3", "author#3", 120, "Read");
 addBookToLibrary("book#4", "author#4", 520, "Haven't Read Yet");
 
-const cardContainer = document.querySelector(".card-container");
+const cardContainer = document.querySelector(".book-container");
 
-function displayAllBook() {
-  myLibrary.forEach((e) => {
+function displayBook() {
+  const bookOnPage = Array.from(document.getElementsByClassName("book"));
+  bookOnPage.forEach((book) => {
+    book.remove();
+  })
+  myLibrary.forEach((book) => {
     const card = document.createElement("div");
     const cardTop = document.createElement("div");
     const cardBottom = document.createElement("div");
@@ -29,20 +33,19 @@ function displayAllBook() {
     const pages = document.createElement("div");
     const read = document.createElement("div");
       
-    card.className = "card";
-    cardTop.className = "card-top";
-    cardBottom.className = "card-bottom";
+    card.className = "book";
+    cardTop.className = "book-top";
+    cardBottom.className = "book-bottom";
     title.className = "title";
     author.className = "author";
     pages.className = "pages";
     read.className = "read";
       
-      
-    title.textContent = e.title;
-    author.textContent = e.author;
-    pages.textContent = e.pages;
-    read.textContent = e.read;
-      
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = book.pages;
+    read.textContent = book.read;
+
     cardContainer.appendChild(card);
     card.appendChild(cardTop);
     card.appendChild(cardBottom);
@@ -53,4 +56,4 @@ function displayAllBook() {
   })
 }
 
-displayAllBook();
+displayBook();
