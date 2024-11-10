@@ -13,9 +13,9 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 addBookToLibrary("book#1", "author#1", 345, "Read");
-addBookToLibrary("book#2", "author#2", 210, "Haven't Read Yet");
+addBookToLibrary("book#2", "author#2", 210);
 addBookToLibrary("book#3", "author#3", 120, "Read");
-addBookToLibrary("book#4", "author#4", 520, "Haven't Read Yet");
+addBookToLibrary("book#4", "author#4", 520);
 
 const cardContainer = document.querySelector(".book-container");
 
@@ -51,8 +51,8 @@ function displayBook() {
     card.appendChild(cardBottom);
     cardTop.appendChild(title);
     cardTop.appendChild(author);
-    cardBottom.appendChild(pages);
     cardBottom.appendChild(read);
+    cardBottom.appendChild(pages);
   })
 }
 
