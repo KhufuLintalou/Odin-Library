@@ -75,9 +75,9 @@ addBookButton.addEventListener("click", (event) => {
   const readStatus = document.querySelector("#read");
   
   if (readStatus.checked) {
-    addBookToLibrary(inputtedAuthor.value, inputtedTitle.value, inputtedPage.value, readStatus.value);
+    addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value, readStatus.value);
   } else {
-    addBookToLibrary(inputtedAuthor.value, inputtedTitle.value, inputtedPage.value);
+    addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value);
   }
 
   displayBook();
