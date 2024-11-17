@@ -57,3 +57,40 @@ function displayBook() {
 }
 
 displayBook();
+
+const newBookDialog = document.querySelector("#new-book-dialog");
+const newBookButton = document.querySelector("#new-book-button");
+const closeDialogButton = document.querySelector("#close");
+const addBookButton = document.querySelector("#add");
+
+newBookButton.addEventListener("click", () => {
+  newBookDialog.showModal();
+})
+
+addBookButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  const inputtedAuthor = document.querySelector("#author");
+  const inputtedTitle = document.querySelector("#title");
+  const inputtedPage = document.querySelector("#page");
+  const readStatus = document.querySelector("#read");
+  
+  if (readStatus.checked) {
+    addBookToLibrary(inputtedAuthor.value, inputtedTitle.value, inputtedPage.value, readStatus.value);
+  } else {
+    addBookToLibrary(inputtedAuthor.value, inputtedTitle.value, inputtedPage.value);
+  }
+
+  displayBook();
+
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.value = "";
+  })
+  newBookDialog.close();
+})
+
+closeDialogButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  newBookDialog.close();
+})
+
