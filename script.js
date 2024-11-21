@@ -46,6 +46,8 @@ function displayBook() {
     pages.textContent = book.pages;
     read.textContent = book.read;
 
+    card.dataset.indexNumber = myLibrary.indexOf(book);
+
     cardContainer.appendChild(card);
     card.appendChild(cardTop);
     card.appendChild(cardBottom);
@@ -53,6 +55,11 @@ function displayBook() {
     cardTop.appendChild(author);
     cardBottom.appendChild(read);
     cardBottom.appendChild(pages);
+
+    const removeButton = document.createElement("button");
+    removeButton.className = "remove";
+    removeButton.textContent = "X"
+    card.appendChild(removeButton);
   })
 }
 
@@ -92,5 +99,16 @@ addBookButton.addEventListener("click", (event) => {
 closeDialogButton.addEventListener("click", (event) => {
   event.preventDefault();
   newBookDialog.close();
+})
+
+cardContainer.addEventListener("click", (event) => {
+  if (event.target.className === "remove") {
+    let removeButton = event.target;
+    let book = removeButton.parentElement;
+
+    myLibrary.splice(book.dataset.indexNumber, 1);
+    
+    displayBook();
+  }
 })
 
