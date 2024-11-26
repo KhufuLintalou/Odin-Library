@@ -5,6 +5,13 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.changeReadStatus = function() {
+      if (this.read == "Read") {
+        this.read = "";
+      } else if (this.read != "Read") {
+        this.read = "Read";
+      }
+    }
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -56,10 +63,19 @@ function displayBook() {
     cardBottom.appendChild(read);
     cardBottom.appendChild(pages);
 
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "button-container";
+    card.appendChild(buttonContainer);
+
     const removeButton = document.createElement("button");
     removeButton.className = "remove";
     removeButton.textContent = "X"
-    card.appendChild(removeButton);
+    buttonContainer.appendChild(removeButton);
+
+    const readStatusButton = document.createElement("button");
+    readStatusButton.className = "read-status";
+    readStatusButton.textContent = "Read";
+    buttonContainer.appendChild(readStatusButton);
   })
 }
 
@@ -102,12 +118,21 @@ closeDialogButton.addEventListener("click", (event) => {
 })
 
 cardContainer.addEventListener("click", (event) => {
-  if (event.target.className === "remove") {
+  if (event.target.className == "remove") {
     let removeButton = event.target;
-    let book = removeButton.parentElement;
+    let book = removeButton.parentElement.parentElement;
 
     myLibrary.splice(book.dataset.indexNumber, 1);
     
+    displayBook();
+  }
+
+  if (event.target.className == "read-status") {
+    let readStatusButton = event.target;
+    let book = readStatusButton.parentElement.parentElement;
+
+    myLibrary[book.dataset.indexNumber].changeReadStatus();
+
     displayBook();
   }
 })
