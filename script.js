@@ -8,7 +8,7 @@ function Book(title, author, pages, read) {
     this.changeReadStatus = function() {
       if (this.read == "Read") {
         this.read = "";
-      } else if (this.read != "Read") {
+      } else {
         this.read = "Read";
       }
     }
@@ -64,7 +64,7 @@ function displayBook() {
     cardBottom.appendChild(pages);
 
     const buttonContainer = document.createElement("div");
-    buttonContainer.className = "button-container";
+    buttonContainer.className = "book-button-container";
     card.appendChild(buttonContainer);
 
     const removeButton = document.createElement("button");
@@ -98,7 +98,7 @@ addBookButton.addEventListener("click", (event) => {
   const readStatus = document.querySelector("#read");
   
   if (readStatus.checked) {
-    addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value, readStatus.value);
+    addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value, "Read");
   } else {
     addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value);
   }
@@ -121,6 +121,7 @@ cardContainer.addEventListener("click", (event) => {
   if (event.target.className == "remove") {
     let removeButton = event.target;
     let book = removeButton.parentElement.parentElement;
+    // "removeButton.parentElement" is the "book-button-container" and its .parentElement is the "book" element it is inside of.
 
     myLibrary.splice(book.dataset.indexNumber, 1);
     
