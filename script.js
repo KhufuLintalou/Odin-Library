@@ -96,20 +96,25 @@ addBookButton.addEventListener("click", (event) => {
   const inputtedTitle = document.querySelector("#title");
   const inputtedPage = document.querySelector("#page");
   const readStatus = document.querySelector("#read");
+  const inputs = document.querySelectorAll("input");
   
-  if (readStatus.checked) {
+  if (inputtedAuthor.value == "" || inputtedTitle.value == "" || inputtedPage.value == "") {
+    alert("Fill in all the fields.");
+  } else if (readStatus.checked) {
     addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value, "Read");
+    inputs.forEach((input) => {
+      input.value = "";
+    })
+    newBookDialog.close();
   } else {
     addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value);
+    inputs.forEach((input) => {
+      input.value = "";
+    })
+    newBookDialog.close();
   }
 
   displayBook();
-
-  const inputs = document.querySelectorAll("input");
-  inputs.forEach((input) => {
-    input.value = "";
-  })
-  newBookDialog.close();
 })
 
 closeDialogButton.addEventListener("click", (event) => {
