@@ -6,10 +6,11 @@
 }
 
 header {
-  background-color: black;
+  background-color: rgb(133, 91, 31);
   color: white;
-  text-align: center;
   padding: 10px;
+  border: 10px ridge rgb(97, 66, 23);
+  text-align: center;
 }
 
 .book-container {
