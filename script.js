@@ -143,7 +143,18 @@ cardContainer.addEventListener("click", (event) => {
 
     myLibrary[book.dataset.indexNumber].changeReadStatus();
 
-    displayBook();
+    let bookReadStatus = document.querySelectorAll(".read");
+    bookReadStatus.forEach((readStatus) => {
+      if (book == readStatus.parentElement.parentElement) {
+        if (readStatus.textContent != "Read") {
+          readStatus.textContent = "Read";
+          readStatus.style.backgroundColor = "rgb(1, 163, 238)";
+        } else {
+          readStatus.textContent = "";
+          readStatus.style.backgroundColor = "rgb(0, 0, 0, 0)";
+        }
+      }
+    })
   }
 })
 
