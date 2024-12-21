@@ -1,2 +1,1 @@
-# Odin-Library
-Small Library app in Javascript for practice. https://www.theodinproject.com/lessons/node-path-javascript-library
+First project in the course and it tooks me over a month to get everything done, self-studying is very efficient.
