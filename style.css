@@ -57,15 +57,15 @@ header {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 50px;
+  gap: 88%;
 }
 
 .read {
-  flex: auto;
-}
-
-.read,
-.pages {
-  padding: 5px;
+  background-color: rgb(1, 163, 238);
+  height: 20px;
+  width: 100%;
+  padding-top: 3px;
 }
 
 .book-top {
@@ -75,6 +75,38 @@ header {
 .book-button-container {
   position: absolute;
   top: 90px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
+  gap: 5px;
+}
+
+.book-button-container button {
+  border: none;
+  color: white;
+  padding: 5px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  height: 35px;
+  width: 65px;
+  font-weight: bold;
+  transition-duration: 100ms;
+}
+.book-button-container button:hover {
+  width: 70px;
+}
+.book-button-container button:active {
+  filter: brightness(90%);
+}
+
+.remove {
+  background-color: rgb(224, 60, 60);
+}
+
+.read-button {
+  background-color: rgb(1, 163, 238);
 }
 
 dialog + div {

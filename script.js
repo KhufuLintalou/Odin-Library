@@ -53,6 +53,10 @@ function displayBook() {
     pages.textContent = book.pages;
     read.textContent = book.read;
 
+    if (read.textContent == "") {
+      read.style.backgroundColor = "rgb(0, 0, 0, 0)"; 
+    }
+
     card.dataset.indexNumber = myLibrary.indexOf(book);
 
     cardContainer.appendChild(card);
@@ -69,11 +73,11 @@ function displayBook() {
 
     const removeButton = document.createElement("button");
     removeButton.className = "remove";
-    removeButton.textContent = "X"
+    removeButton.textContent = "Remove"
     buttonContainer.appendChild(removeButton);
 
     const readStatusButton = document.createElement("button");
-    readStatusButton.className = "read-status";
+    readStatusButton.className = "read-button";
     readStatusButton.textContent = "Read";
     buttonContainer.appendChild(readStatusButton);
   })
@@ -133,7 +137,7 @@ cardContainer.addEventListener("click", (event) => {
     displayBook();
   }
 
-  if (event.target.className == "read-status") {
+  if (event.target.className == "read-button") {
     let readStatusButton = event.target;
     let book = readStatusButton.parentElement.parentElement;
 
