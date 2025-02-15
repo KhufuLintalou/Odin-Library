@@ -1,22 +1,25 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+class Book {
+  constructor(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.changeReadStatus = function() {
-      if (this.read == "Read") {
-        this.read = "";
-      } else {
-        this.read = "Read";
-      }
+  }
+    
+  changeReadStatus() {
+    if (this.read == "Read") {
+    this.read = "";
+    } else {
+      this.read = "Read";
     }
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
-    const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
+  const book = new Book(title, author, pages, read);
+  myLibrary.push(book);
 }
 
 addBookToLibrary("book#1", "author#1", 345, "Read");
@@ -27,10 +30,11 @@ addBookToLibrary("book#4", "author#4", 520);
 const cardContainer = document.querySelector(".book-container");
 
 function displayBook() {
-  const bookOnPage = Array.from(document.getElementsByClassName("book"));
+  const bookOnPage = document.querySelectorAll(".book");
   bookOnPage.forEach((book) => {
     book.remove();
   })
+  
   myLibrary.forEach((book) => {
     const card = document.createElement("div");
     const cardTop = document.createElement("div");
