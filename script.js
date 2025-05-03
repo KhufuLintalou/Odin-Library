@@ -7,10 +7,10 @@ class Book {
     this.pages = pages;
     this.read = read;
   }
-    
+
   changeReadStatus() {
     if (this.read == "Read") {
-    this.read = "";
+      this.read = "";
     } else {
       this.read = "Read";
     }
@@ -34,7 +34,7 @@ function displayBook() {
   bookOnPage.forEach((book) => {
     book.remove();
   })
-  
+
   myLibrary.forEach((book) => {
     const card = document.createElement("div");
     const cardTop = document.createElement("div");
@@ -43,7 +43,7 @@ function displayBook() {
     const author = document.createElement("div");
     const pages = document.createElement("div");
     const read = document.createElement("div");
-      
+
     card.className = "book";
     cardTop.className = "book-top";
     cardBottom.className = "book-bottom";
@@ -51,14 +51,14 @@ function displayBook() {
     author.className = "author";
     pages.className = "pages";
     read.className = "read";
-      
+
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = book.pages;
     read.textContent = book.read;
 
     if (read.textContent == "") {
-      read.style.backgroundColor = "rgb(0, 0, 0, 0)"; 
+      read.style.backgroundColor = "rgb(0, 0, 0, 0)";
     }
 
     card.dataset.indexNumber = myLibrary.indexOf(book);
@@ -94,20 +94,27 @@ const newBookButton = document.querySelector("#new-book-button");
 const closeDialogButton = document.querySelector("#close");
 const addBookButton = document.querySelector("#add");
 
+const inputtedAuthor = document.querySelector("#author");
+const inputtedTitle = document.querySelector("#title");
+const inputtedPage = document.querySelector("#page");
+const readStatus = document.querySelector("#read");
+const inputs = document.querySelectorAll("input");
+
 newBookButton.addEventListener("click", () => {
   newBookDialog.showModal();
 })
 
 addBookButton.addEventListener("click", (event) => {
   event.preventDefault();
-  const inputtedAuthor = document.querySelector("#author");
-  const inputtedTitle = document.querySelector("#title");
-  const inputtedPage = document.querySelector("#page");
-  const readStatus = document.querySelector("#read");
-  const inputs = document.querySelectorAll("input");
-  
+
   if (inputtedAuthor.value == "" || inputtedTitle.value == "" || inputtedPage.value == "") {
-    alert("Fill in all the fields.");
+    inputs.forEach((input) => {
+      if (!input.classList.contains("invalid") || !input.classList.contains("valid")) {
+        input.classList.add("invalid");
+      }
+
+      newBookDialog.classList.add("error");
+    })
   } else if (readStatus.checked) {
     addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value, "Read");
     inputs.forEach((input) => {
@@ -137,7 +144,7 @@ cardContainer.addEventListener("click", (event) => {
     // "removeButton.parentElement" is the "book-button-container" and its .parentElement is the "book" element it is inside of.
 
     myLibrary.splice(book.dataset.indexNumber, 1);
-    
+
     displayBook();
   }
 
@@ -159,6 +166,22 @@ cardContainer.addEventListener("click", (event) => {
         }
       }
     })
+  }
+})
+
+function setInputValidity(input) {
+  if (input.validity.valueMissing) {
+    input.classList.remove("valid");
+    input.classList.add("invalid");
+  } else {
+    input.classList.remove("invalid");
+    input.classList.add("valid");
+  }
+}
+
+newBookDialog.addEventListener("input", (event) => {
+  if (event.target.tagName === "INPUT") {
+    setInputValidity(event.target);
   }
 })
 
