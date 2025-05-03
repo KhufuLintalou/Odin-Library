@@ -158,7 +158,8 @@ dialog::backdrop {
 }
 
 form {
-  padding: 10px;
+  padding: 20px;
+  padding-top: 25px;
   height: 300px;
   width: 350px;
   font-size: 20px;
@@ -239,6 +240,23 @@ label {
 #close:hover {
   box-shadow: 0 0 0 1px rgb(190, 0, 0);
   filter: brightness(108%);
+}
+
+.valid {
+  background-color: #559355;
+}
+
+.invalid {
+  background-color: #b43434;
+}
+
+.error::before {
+  position: absolute;
+  content: "Fill in all the fields.";
+  background-color: #b43434;
+  left: 110px;
+  color: white;
+  font-weight: bold;
 }
 
 
