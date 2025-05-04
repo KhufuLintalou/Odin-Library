@@ -119,12 +119,11 @@ addBookButton.addEventListener("click", (event) => {
 
   if (inputtedAuthor.value == "" || inputtedTitle.value == "" || inputtedPage.value == "") {
     inputs.forEach((input) => {
-      if (!input.classList.contains("invalid") || !input.classList.contains("valid")) {
-        input.classList.add("invalid");
-      }
-
-      newBookDialog.classList.add("error");
+      setInputValidity(input)
     })
+
+    newBookDialog.classList.add("error");
+    
   } else if (readStatus.checked) {
     addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value, "Read");
     inputs.forEach((input) => {
