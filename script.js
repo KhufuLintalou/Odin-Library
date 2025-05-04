@@ -104,6 +104,16 @@ newBookButton.addEventListener("click", () => {
   newBookDialog.showModal();
 })
 
+function dialogReset() {
+  newBookDialog.className = "";
+
+  inputs.forEach((input) => {
+    input.className = "";
+  })
+
+  newBookDialog.close();
+}
+
 addBookButton.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -120,13 +130,15 @@ addBookButton.addEventListener("click", (event) => {
     inputs.forEach((input) => {
       input.value = "";
     })
-    newBookDialog.close();
+    
+    dialogReset();
   } else {
     addBookToLibrary(inputtedTitle.value, inputtedAuthor.value, inputtedPage.value);
     inputs.forEach((input) => {
       input.value = "";
     })
-    newBookDialog.close();
+
+    dialogReset();
   }
 
   displayBook();
@@ -134,7 +146,7 @@ addBookButton.addEventListener("click", (event) => {
 
 closeDialogButton.addEventListener("click", (event) => {
   event.preventDefault();
-  newBookDialog.close();
+  dialogReset();
 })
 
 cardContainer.addEventListener("click", (event) => {
